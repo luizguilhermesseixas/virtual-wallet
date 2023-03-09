@@ -3,10 +3,7 @@ import Routes from './components/Routes';
 
 function App() {
   return (
-    <>
-      <div>Hello, TrybeWallet!</div>
-      <Routes />
-    </>
+    <Routes />
   );
 }
 
