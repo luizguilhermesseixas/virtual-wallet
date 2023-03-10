@@ -51,6 +51,8 @@ class WalletForm extends Component {
   }
 }
 
+/* .filter((currencie) => currencie !== 'USDT') */
+
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf.isRequired,
 };
