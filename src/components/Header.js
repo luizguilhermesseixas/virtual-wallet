@@ -9,8 +9,9 @@ class Header extends Component {
       expenses,
     } = this.props;
     return (
-      <div>
+      <header>
         <span data-testid="email-field">{email}</span>
+        {' '}
         <span data-testid="total-field">
           { expenses.map(
             ({ value, exchangeRates, currency }) => exchangeRates[currency].ask * value,
@@ -18,7 +19,7 @@ class Header extends Component {
             .reduce((acc, curr) => acc + curr, 0).toFixed(2) }
         </span>
         <span data-testid="header-currency-field">BRL</span>
-      </div>
+      </header>
     );
   }
 }
