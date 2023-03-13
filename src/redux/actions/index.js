@@ -1,12 +1,20 @@
+import fetchApi from '../../services';
+
 // Coloque aqui suas actions
 const SAVED_EMAIL = 'SAVE_EMAIL';
 const FETCH_SUCCESSFUL = 'FETCH_SUCCESSFUL';
 const FETCH_START = 'FETCH_START';
 const FETCH_FAILED = 'FETCH_FAILED';
+const SAVE_EXPENSES = 'SAVE_EXPENSES';
 
 const savedEmail = (state) => ({
   type: SAVED_EMAIL,
   payload: state.email,
+});
+
+const saveExpenses = (state) => ({
+  type: SAVE_EXPENSES,
+  payload: state,
 });
 
 const fetchStart = () => ({
@@ -23,15 +31,24 @@ const fetchFailed = (error) => ({
   payload: error,
 });
 
-export function fetchCurrencies() {
-  return (dispatch) => {
+export const fetchCurrencies = () => async (dispatch) => {
+  dispatch(fetchStart());
+  const data = await fetchApi();
+  dispatch(fetchSuccessful(data));
+};
+
+/* export async function fetchCurrencies() {
+  return async (dispatch) => {
     dispatch(fetchStart());
-    fetch('https://economia.awesomeapi.com.br/json/all')
+    return fetch('https://economia.awesomeapi.com.br/json/all')
       .then((response) => response.json())
-      .then((data) => dispatch(fetchSuccessful(data)))
+      .then((data) => {
+        dispatch(fetchSuccessful(data));
+        return data;
+      })
       .catch((error) => dispatch(fetchFailed(error)));
   };
-}
+} */
 
 /* const fetchApi = () => async () => {
   try {
@@ -54,4 +71,6 @@ export {
   FETCH_SUCCESSFUL,
   fetchFailed,
   FETCH_FAILED,
+  saveExpenses,
+  SAVE_EXPENSES,
 };

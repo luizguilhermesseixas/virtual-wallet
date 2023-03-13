@@ -1,4 +1,4 @@
-import { FETCH_FAILED, FETCH_START, FETCH_SUCCESSFUL } from '../actions';
+import { FETCH_FAILED, FETCH_START, FETCH_SUCCESSFUL, SAVE_EXPENSES } from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -11,7 +11,6 @@ const INITIAL_STATE = {
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
-  console.log(action.payload);
   switch (action.type) {
   case FETCH_START:
     return {
@@ -23,7 +22,7 @@ const wallet = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       isFetching: false,
-      currencies: Object.keys(action.payload).filter((currencie) => currencie !== 'USDT'),
+      currencies: Object.keys(action.payload).filter((currency) => currency !== 'USDT'),
     };
 
   case FETCH_FAILED:
@@ -31,6 +30,15 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       isFetching: false,
       errorMessage: action.payload,
+    };
+
+  case SAVE_EXPENSES:
+    return {
+      ...state,
+      expenses: [
+        ...state.expenses,
+        action.payload,
+      ],
     };
 
   default:

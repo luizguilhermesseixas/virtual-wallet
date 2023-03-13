@@ -13,15 +13,14 @@ class Wallet extends React.Component {
 
   render() {
     const {
-      currencies,
+      /*       currencies, */
       email,
       /*       isFetching, */
     } = this.props;
-    console.log(currencies);
     return (
       <>
         <Header email={ email } />
-        <WalletForm currencies={ currencies } />
+        <WalletForm currencies />
       </>
     );
   }
@@ -29,14 +28,14 @@ class Wallet extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
-  currencies: state.wallet.currencies,
-  isFetching: state.wallet.isFetching,
+/*   currencies: state.wallet.currencies,
+  isFetching: state.wallet.isFetching, */
 });
 
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
-  currencies: PropTypes.arrayOf.isRequired,
+/*   currencies: PropTypes.arrayOf.isRequired, */
 /*   isFetching: PropTypes.bool.isRequired, */
 };
 
