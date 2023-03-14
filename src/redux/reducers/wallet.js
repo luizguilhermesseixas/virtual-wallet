@@ -1,4 +1,10 @@
-import { FETCH_FAILED, FETCH_START, FETCH_SUCCESSFUL, SAVE_EXPENSES } from '../actions';
+import {
+  FETCH_FAILED,
+  FETCH_START,
+  FETCH_SUCCESSFUL,
+  SAVE_EXPENSES,
+  REMOVE_EXPENSES,
+} from '../actions';
 
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 const INITIAL_STATE = {
@@ -39,6 +45,12 @@ const wallet = (state = INITIAL_STATE, action) => {
         ...state.expenses,
         action.payload,
       ],
+    };
+
+  case REMOVE_EXPENSES:
+    return {
+      ...state,
+      expenses: state.expenses.filter(({ id }) => id !== action.payload),
     };
 
   default:

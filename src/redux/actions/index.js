@@ -6,6 +6,12 @@ const FETCH_SUCCESSFUL = 'FETCH_SUCCESSFUL';
 const FETCH_START = 'FETCH_START';
 const FETCH_FAILED = 'FETCH_FAILED';
 const SAVE_EXPENSES = 'SAVE_EXPENSES';
+const REMOVE_EXPENSES = 'REMOVE_EXPENSES';
+
+const removeExpenses = (id) => ({
+  type: REMOVE_EXPENSES,
+  payload: id,
+});
 
 const savedEmail = (state) => ({
   type: SAVED_EMAIL,
@@ -73,4 +79,6 @@ export {
   FETCH_FAILED,
   saveExpenses,
   SAVE_EXPENSES,
+  removeExpenses,
+  REMOVE_EXPENSES,
 };
